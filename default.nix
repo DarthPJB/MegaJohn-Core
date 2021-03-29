@@ -12,10 +12,10 @@ emscriptenStdenv.mkDerivation
   src = fetchFromGitHub {
     owner = "DarthPJB";
     repo = "MegaJohn-Core";
-    rev = "fc382262b9503236ec54c21413581e4f5bfa25e8";
-    sha256 = "0qkmcgf70yfbwsgr9xc92bdswkd9m0hfr3y4nyqp1mygag0n9w6s";
+    rev = "a0ed7b65df9f752132a1165dfb0315da7289b2e5";
+    sha256 = "1vrshq1z6i8s3zs41bs2v2pldfax26sv6fv5w4ci80wfqglcfmdz";
     fetchSubmodules = true;
-    #nix-prefetch-url --unpack https://github.com/DarthPJB/MegaJohn-Core/archive/fc382262b9503236ec54c21413581e4f5bfa25e8.tar.gz
+    #nix-prefetch-url --unpack https://github.com/DarthPJB/MegaJohn-Core/archive/a0ed7b65df9f752132a1165dfb0315da7289b2e5.tar.gz
   };
   buildInputs = [ pkgs.figlet ];
 
