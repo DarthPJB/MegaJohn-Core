@@ -1,24 +1,27 @@
-#default nixpkgs
-{ pkgs ? import <nixpkgs> {} }:
+# with import <nixpkgs> {}; callPackage /path/to/package.nix {}
+
+# default nixpkgs
+{ emscriptenStdenv, fetchFromGitHub, figlet, pkgs  }:
 
 
 # Generate Shell
-pkgs.emscriptenStdenv.mkDerivation
+emscriptenStdenv.mkDerivation
 {
   name = "MegaJohn-Core";
   builder = ./task.sh;
   src = fetchFromGitHub {
     owner = "DarthPJB";
     repo = "MegaJohn-Core";
-    rev = "4f9d46c17538eda0fe6083edb821802875bb5690";
-    sha256 = "10y6735a7gahbmqs8r38gar2qgkvxhv8k37slwzj3gvv1dbnzym6";
+    rev = "fc382262b9503236ec54c21413581e4f5bfa25e8";
+    sha256 = "0qkmcgf70yfbwsgr9xc92bdswkd9m0hfr3y4nyqp1mygag0n9w6s";
+    #nix-prefetch-url --unpack https://github.com/DarthPJB/MegaJohn-Core/archive/fc382262b9503236ec54c21413581e4f5bfa25e8.tar.gz
   };
-  buildInputs = [ pkgs.cowsay ];
+  buildInputs = [ pkgs.figlet ];
 
   #Run build-task post generation (TODO: makefile)
   shellHook = ''
-    cowsay "this is awesome build enviroment in NixOS"
-    echo EMSCRIPTEN_ROOT_PATH='${emscripten}/share/emscripten'
-    echo EMSCRIPTEN='${emscripten}/share/emscripten'
+    export EMSCRIPTEN_ROOT_PATH='${pkgs.emscripten}/share/emscripten'
+    export EMSCRIPTEN='${pkgs.emscripten}/share/emscripten'
+    figlet "emscripten build enviroment ready:"
   '';
 }
