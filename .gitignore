@@ -25,15 +25,18 @@
 *.la
 *.a
 *.lib
+*.s
 
 # Executables
 *.exe
 *.out
 *.app
+*.wasm
 
-# output folder 
+# output folder
 /serve
 /serve/*
+/build/*
+/result
 cert.pem
 key.pem
-
