@@ -31,9 +31,10 @@
 *.out
 *.app
 
-# output folder 
+# output folder
 /serve
 /serve/*
+/build/*
+/result
 cert.pem
 key.pem
-
