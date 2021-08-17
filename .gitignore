@@ -25,11 +25,13 @@
 *.la
 *.a
 *.lib
+*.s
 
 # Executables
 *.exe
 *.out
 *.app
+*.wasm
 
 # output folder
 /serve
