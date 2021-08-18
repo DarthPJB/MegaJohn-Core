@@ -32,12 +32,14 @@ stdenvNoCC.mkDerivation
   buildPhase = ''
   mkdir $out
   cd $src/src
-  clang++ -emit-llvm --target=wasm32 -S main.cpp -o $TMPDIR/main.ll
-  llc -march=wasm32 -filetype=asm $TMPDIR/main.ll -o $TMPDIR/main.s
-  s2wasm $TMPDIR/main.s -o $TMPDIR/main.wat
-  wat2wasm $TMPDIR/main.wat -o $out/main.wasm
-  '';
+  clang++ main.cpp -ObjC++ --compile\
+   --target=wasm32-unknown-wasi \
+        --optimize=3 --output $out/test.wasm
 
+  '';
+#  llc -march=wasm32 -filetype=asm $TMPDIR/main.ll -o $TMPDIR/main.s
+#  s2wasm $TMPDIR/main.s -o $TMPDIR/main.wat
+#  wat2wasm $TMPDIR/main.wat -o $out/main.wasm
 
 
   installPhase = " echo nothing to install";
